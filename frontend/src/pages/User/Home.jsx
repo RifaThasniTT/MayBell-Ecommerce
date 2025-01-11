@@ -1,12 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import UserHeader from '../../components/User/Header';
 import UserFooter from '../../components/User/Footer';
 import bannerImage from '../../assets/images/banner-2.jpg'
 import { useNavigate } from 'react-router-dom';
+import { getLatestProducts } from '../../api/User/Products';
+import ProductCard from '../../components/User/ProductCard';
 
 const Home = () => {
 
   const navigate = useNavigate();
+  const [latestProducts, setLatestProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const fetchLatestProducts = async () => {
+    try {
+      setLoading(true);
+      const result = await getLatestProducts();
+
+      if (result){
+        setLatestProducts(result.latestProducts);
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    fetchLatestProducts();
+  }, [])
 
   return (
     <div>
@@ -122,6 +145,26 @@ const Home = () => {
       </section>
       {/* Features Section */}
 
+      <p class="mx-auto mt-10 mb-6 max-w-[1200px] px-5">LATEST ARRIVALS</p>
+
+      <section className="mx-auto grid max-w-[1200px] grid-cols-2 gap-3 px-5 pb-10 lg:grid-cols-4">
+      {loading ? (
+          <div className="flex items-center justify-center h-[200px]">
+          <div className="text-center">
+            <div className="loader border-t-4 border-b-4 border-gray-900 h-10 w-10 mx-auto rounded-full animate-spin"></div>
+            <p className="mt-3 text-gray-500">Loading...</p>
+          </div>
+        </div>
+        ) : latestProducts.length === 0 ? (
+          <p>No products are found.</p>  
+        ) : (
+          latestProducts.map((product) => (
+            <ProductCard key={product._id} product={product} />
+          ))
+        )}
+      </section>
+
+      <p class="mx-auto mt-10 mb-5 max-w-[1200px] px-5">BEST SELLERS</p>
 
       <UserFooter/>
     </div>

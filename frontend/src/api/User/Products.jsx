@@ -37,6 +37,19 @@ const getListedProducts = async ({ categories = [], sort = '', search = '' }) =>
     }
 };
 
+const getLatestProducts = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/latest`);
+
+    if (response.status === 200) {
+      return response.data;
+    }
+  } catch (error) {
+    toast.error(error.response?.data?.message || 'An error occured!');
+    throw error;
+  }
+}
+
 const getListedCategories = async () => {
     try {
       const response = await axios.get(`http://localhost:9000/api/user/categories`);
@@ -49,4 +62,4 @@ const getListedCategories = async () => {
     }
 };
 
-export { getProductDetails, getListedProducts, getListedCategories };
+export { getProductDetails, getListedProducts, getListedCategories, getLatestProducts };

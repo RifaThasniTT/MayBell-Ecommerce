@@ -33,6 +33,7 @@ router.patch('/address/:addressId', verifyToken, addressController.editAddress);
 router.delete('/address/:addressId', verifyToken, addressController.deleteAddress);
 
 //Product
+router.get('/product/latest', productController.getLatestArrivals);
 router.get('/product', productController.getProductsForUser);
 router.get('/product/:productId', productController.singleProduct);
 

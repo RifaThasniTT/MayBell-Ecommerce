@@ -116,7 +116,7 @@ const ProductCard = ({ product }) => {
 
 
         <div className="flex items-center">
-          {[...Array(4)].map((_, index) => (
+          {[...Array(5)].map((_, index) => (
             <svg
               key={index}
               xmlns="http://www.w3.org/2000/svg"

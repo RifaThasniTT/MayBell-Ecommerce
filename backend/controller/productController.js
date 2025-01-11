@@ -215,6 +215,19 @@ const getProductsForUser = async (req, res) => {
     }
 };
 
+const getLatestArrivals = async (req, res) => {
+    try {
+        const latestProducts = await productSchema.aggregate([
+            { $sort: { createdAt: -1 } },
+            { $limit: 4 } 
+        ]);
+
+        return res.status(HTTP_STATUS.OK).json({ message: 'New Arrivals fetched!', latestProducts });
+    } catch (error) {
+        return res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({ message: 'Server error', error });
+    }
+}
+
 module.exports = {
     getAllProducts,
     addProduct,
@@ -222,4 +235,5 @@ module.exports = {
     singleProduct,
     editProduct,
     getProductsForUser,
+    getLatestArrivals,
 }
