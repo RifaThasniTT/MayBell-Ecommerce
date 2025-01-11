@@ -18,7 +18,7 @@ const Home = () => {
       const result = await getLatestProducts();
 
       if (result){
-        setLatestProducts(result.latestProducts);
+        setLatestProducts(result.latestProducts || []);
       }
     } catch (error) {
       console.error(error);
@@ -145,7 +145,7 @@ const Home = () => {
       </section>
       {/* Features Section */}
 
-      <p class="mx-auto mt-10 mb-6 max-w-[1200px] px-5">LATEST ARRIVALS</p>
+      <p className="mx-auto mt-10 mb-6 max-w-[1200px] px-5">LATEST ARRIVALS</p>
 
       <section className="mx-auto grid max-w-[1200px] grid-cols-2 gap-3 px-5 pb-10 lg:grid-cols-4">
       {loading ? (
@@ -164,7 +164,7 @@ const Home = () => {
         )}
       </section>
 
-      <p class="mx-auto mt-10 mb-5 max-w-[1200px] px-5">BEST SELLERS</p>
+      <p className="mx-auto mt-10 mb-5 max-w-[1200px] px-5">BEST SELLERS</p>
 
       <UserFooter/>
     </div>
