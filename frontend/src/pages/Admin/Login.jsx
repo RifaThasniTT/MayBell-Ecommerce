@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { login } from '../../api/Admin/adminAuth';
+import { login } from '../../api/Admin/AdminAuth';
 import { toast } from 'react-toastify';
 
 const Login = () => {
