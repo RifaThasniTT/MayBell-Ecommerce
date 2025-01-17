@@ -23,7 +23,6 @@ const Overview = () => {
         const result = await getStats();
 
         if (result) {
-          console.log(result);
           setUsers(result.counts.activeUsers);
           setProducts(result.counts.activeProducts);
           setOrders(result.counts.totalOrders);
@@ -48,7 +47,6 @@ const Overview = () => {
 
         if (result) {
           setChartData(result.data);
-          console.log(result.data);
         }
       } catch (error) {
         console.error(error);

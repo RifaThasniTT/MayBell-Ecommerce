@@ -28,7 +28,7 @@ const AllProducts = () => {
           search: searchTerm,
         });
         
-        setProducts(productResult);
+        setProducts(productResult || []);
 
       } catch (error) {
         console.error(error);
