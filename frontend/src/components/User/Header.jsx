@@ -85,7 +85,7 @@ const UserHeader = () => {
 
         {/* Navigation Icons */}
         <div className="hidden gap-5 md:flex">
-          <a href="/wishlist" className="flex cursor-pointer flex-col items-center justify-center relative">
+          <a onClick={() => navigate('/wishlist')} className="flex cursor-pointer flex-col items-center justify-center relative">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -111,7 +111,7 @@ const UserHeader = () => {
           </a>
 
 
-          <a href="/cart" className="flex cursor-pointer flex-col items-center justify-center relative">
+          <a onClick={() => navigate('/cart')} className="flex cursor-pointer flex-col items-center justify-center relative">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
