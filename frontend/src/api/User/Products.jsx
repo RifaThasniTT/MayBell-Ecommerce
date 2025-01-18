@@ -52,7 +52,7 @@ const getLatestProducts = async () => {
 
 const getListedCategories = async () => {
     try {
-      const response = await axios.get(`http://localhost:9000/api/user/categories`);
+      const response = await axios.get(`${import.meta.env.VITE_API_ROOT_URL}/user/categories`);
 
       if (response.status === 200) {
         return response.data.categories.filter((category) => category.isListed);
